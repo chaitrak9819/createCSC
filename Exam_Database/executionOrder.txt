@@ -1,0 +1,12 @@
+Order of sql file executions:
+DDL
+courses
+programs
+contacts
+exams
+populations
+sessions
+students
+teachers
+grades
+attendance
