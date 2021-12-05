@@ -1,0 +1,29 @@
+Relations:
+
+1. exams(exam_course_code,exam_course_rev, exam_course_type) --> grades (grade_course_code,grade_course_rev ,grade_exam_type_ref) *to be created
+
+2. contacts(contact_email) --> students (student_contact_ref) 
+
+3. student(student_epita_email) --> grades (grade_student_epita_email_ref) 
+
+4. course(course_code, course_rev) --> programs (program_course_code , program_course_rev) 
+
+5. populations --> students(student_population_code_ref, student_population_year_ref, student_population_period_ref) *to be created
+      ALTER TABLE attendance ADD CONSTRAINT students_attendance_fk FOREIGN KEY (attendance_student_ref) REFERENCES students(student_epita_email) ON DELETE SET NULL;
+
+6. courses(course_code, course_rev) --> exam (exam_course_code, exam_course_rev) *to be created
+
+7. course(course_code, course_rev) --> sessions(session_course_ref, session_course_rev_ref)  *to be created
+
+8. teachers(teacher_epita_email) -->sessions(session_prof_ref) *to be created
+
+9. populations(population_year, population_period) --> sessions(session_population_year, session_population_period) [session_room] *to be created
+
+10. student(student_epita_email) --> attendance(attendance_student_ref) *to be created
+
+11. populations(population_year) --> attendance(attendance_population_year_ref) *to be created
+    ALTER TABLE attendance ADD CONSTRAINT populations_attendance_fk FOREIGN KEY (attendance_population_year_ref) REFERENCES populations(population_year) ON DELETE SET NULL;
+
+12. course(course_code, course_rev ) --> attendance(attendance_course_ref, attendance_course_rev) *to be created
+
+13. sessions(session_date,session_start_time,session_end_time)  --> attendance(attendance_session_date_ref,attendance_session_start_time,attendance_session_end_time) *to be created
